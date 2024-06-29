@@ -110,19 +110,34 @@ git push origin minha-nova-feature
 
 ## Deploy para GitHub Pages
 
+Você deve ter esse repositório clonado para um repositório na sua conta do github. Seu próprio github vai hospedar o sistema.
+
 1. Atualize a propriedade `homepage` para o endereço com o nome da sua conta e do seu repositório no `package.json`:
 
 ```json
 "homepage": "https://seu-usuario.github.io/nome-do-repositorio"
 ```
 
-2. Faça o deploy executando o comando:
+2. Adicionar e fazer commit das mudanças (No terminal, adicione as mudanças e faça commit):
+
+```
+git add .
+git commit -m "Configured for GitHub Pages deployment"
+```
+
+3. Fazer o push das mudanças para o repositório remoto:
+
+```
+git push
+```
+
+4. Faça o deploy executando o comando:
 
 ```bash
 yarn deploy
 ```
 
-3. O projeto estará acessível em `https://seu-usuario.github.io/nome-do-repositorio`.
+5. O projeto estará acessível em `https://seu-usuario.github.io/nome-do-repositorio`.
 
 ## Licença
 
