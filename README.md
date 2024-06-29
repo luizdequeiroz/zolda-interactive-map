@@ -110,38 +110,19 @@ git push origin minha-nova-feature
 
 ## Deploy para GitHub Pages
 
-1. Instale `gh-pages` como dependência de desenvolvimento:
-
-```bash
-yarn add gh-pages --dev
-```
-
-2. Adicione a propriedade `homepage` no `package.json`:
+1. Atualize a propriedade para o endereço com dados da sua conta e do seu repositório no campo `homepage` no `package.json`:
 
 ```json
 "homepage": "https://seu-usuario.github.io/nome-do-repositorio"
 ```
 
-3. Adicione os scripts de pré-deploy e deploy no `package.json`:
-
-```json
-"scripts": {
-  "predeploy": "yarn build",
-  "deploy": "gh-pages -d build",
-  "start": "react-scripts start",
-  "build": "react-scripts build",
-  "test": "react-scripts test",
-  "eject": "react-scripts eject"
-}
-```
-
-4. Faça o deploy executando o comando:
+2. Faça o deploy executando o comando:
 
 ```bash
 yarn deploy
 ```
 
-5. O projeto estará acessível em `https://seu-usuario.github.io/nome-do-repositorio`.
+3. O projeto estará acessível em `https://seu-usuario.github.io/nome-do-repositorio`.
 
 ## Licença
 
