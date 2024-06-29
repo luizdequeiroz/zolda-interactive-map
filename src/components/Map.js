@@ -1,6 +1,6 @@
 // src/components/Map.js
 import React, { useState, useEffect, useRef } from 'react';
-import { MapContainer, ImageOverlay, Marker, Popup } from 'react-leaflet';
+import { MapContainer, ImageOverlay, Marker, Popup, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { CRS, LatLngBounds, latLng } from 'leaflet';
 import Search from './Search';
@@ -76,7 +76,7 @@ function Map() {
         ref={mapRef}
       >
         <ImageOverlay
-          url="img/OMundoConhecido.png"
+          url={`${process.env.PUBLIC_URL}/img/OMundoConhecido.png`}
           bounds={bounds}
         />
         <AddMarker markers={markers} setMarkers={setMarkers} />
@@ -92,6 +92,13 @@ function Map() {
             </Popup>
           </Marker>
         ))}
+        {markers.length > 1 && (
+          <Polyline
+            positions={markers}
+            color="blue"
+            dashArray="5, 10" // Linha tracejada
+          />
+        )}
         <LayerControl />
       </MapContainer>
       <Search setCenter={setCenter} setPopupInfo={setPopupInfo} />

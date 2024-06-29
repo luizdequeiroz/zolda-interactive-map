@@ -15,7 +15,7 @@ function LayerControl() {
       <LayersControl.Overlay name="Divisões Territoriais">
         <LayerGroup>
           <ImageOverlay
-            url="img/OsTerritoriosConhecidos.png"
+            url={`${process.env.PUBLIC_URL}/img/OsTerritoriosConhecidos.png`}
             bounds={bounds}
           />
         </LayerGroup>
@@ -23,7 +23,7 @@ function LayerControl() {
       <LayersControl.Overlay name="Nomes de Regiões">
         <LayerGroup>
           <ImageOverlay
-            url="img/AsLegendasConhecidas.png"
+            url={`${process.env.PUBLIC_URL}/img/AsLegendasConhecidas.png`}
             bounds={bounds}
           />
         </LayerGroup>

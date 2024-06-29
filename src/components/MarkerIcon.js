@@ -1,16 +1,20 @@
 // src/components/MarkerIcon.js
-import { icon } from 'leaflet';
+import L from 'leaflet';
 
-const firstMarkerIcon = icon({
-  iconUrl: '/img/first-marker-icon.png',
-  iconSize: [35, 35], // ajuste conforme necessário
-  iconAnchor: [17.5, 35] // ajuste para centralizar o ícone no ponto de clique
+const firstMarkerIcon = new L.Icon({
+  iconUrl: `${process.env.PUBLIC_URL}/img/first-marker-icon.png`,
+  iconSize: [25, 41], // Ajuste conforme necessário
+  iconAnchor: [12, 41], // Ajuste conforme necessário
+  popupAnchor: [1, -34], // Ajuste conforme necessário
+  shadowSize: [41, 41] // Ajuste conforme necessário
 });
 
-const subsequentMarkerIcon = icon({
-  iconUrl: '/img/subsequent-marker-icon.png',
-  iconSize: [25, 41], // ajuste conforme necessário
-  iconAnchor: [12.5, 41] // ajuste para centralizar o ícone no ponto de clique
+const subsequentMarkerIcon = new L.Icon({
+  iconUrl: `${process.env.PUBLIC_URL}/img/subsequent-marker-icon.png`,
+  iconSize: [25, 41], // Ajuste conforme necessário
+  iconAnchor: [12, 41], // Ajuste conforme necessário
+  popupAnchor: [1, -34], // Ajuste conforme necessário
+  shadowSize: [41, 41] // Ajuste conforme necessário
 });
 
 export { firstMarkerIcon, subsequentMarkerIcon };
