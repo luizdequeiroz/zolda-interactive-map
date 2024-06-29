@@ -71,6 +71,15 @@ function Map() {
     });
   };
 
+  const handleDragEnd = (event, idx) => {
+    const newPosition = event.target.getLatLng();
+    setMarkers((prevMarkers) => {
+      const newMarkers = [...prevMarkers];
+      newMarkers[idx] = [newPosition.lat, newPosition.lng];
+      return newMarkers;
+    });
+  };
+
   return (
     <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
       <MapContainer
@@ -93,9 +102,10 @@ function Map() {
             key={`marker-${idx}`}
             position={position}
             icon={idx === 0 ? firstMarkerIcon : subsequentMarkerIcon}
-            zIndexOffset={1000} // Garantir que os marcadores tenham um z-index suficientemente alto
+            draggable={true}
             eventHandlers={{
               contextmenu: () => handleRightClick(idx), // Manipulador para clique direito
+              dragend: (event) => handleDragEnd(event, idx) // Manipulador para o fim do arrasto
             }}
           >
             <Popup>
