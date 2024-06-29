@@ -42,6 +42,16 @@ yarn start
 ## Estrutura do Projeto
 
 ```
+build
+asset-manifest.json
+index.html
+manifest.json
+robots.txt
+public/
+├── index.html
+├── img/
+│   ├── first-marker-icon.png
+│   └── subsequent-marker-icon.png
 src/
 ├── components/
 │   ├── AddMarker.js
@@ -54,11 +64,6 @@ src/
 ├── database.js
 ├── index.js
 ├── styles.css
-public/
-├── index.html
-├── img/
-│   ├── first-marker-icon.png
-│   └── subsequent-marker-icon.png
 .gitignore
 LICENSE
 README.md
