@@ -16,6 +16,7 @@ Este projeto é um mapa interativo do Mundo Conhecido, desenvolvido com ReactJS 
 
 - Node.js
 - npm (Node Package Manager)
+- yarn
 
 ## Instalação
 
@@ -29,13 +30,13 @@ cd nome-do-repositorio
 2. Instale as dependências:
 
 ```
-npm install
+yarn
 ```
 
 3. Execute o projeto:
 
 ```
-npm start
+yarn start
 ```
 
 ## Estrutura do Projeto
@@ -58,8 +59,11 @@ public/
 ├── img/
 │   ├── first-marker-icon.png
 │   └── subsequent-marker-icon.png
+.gitignore
+LICENSE
 README.md
 package.json
+yarn.lock
 ```
 
 ## Componentes Principais
