@@ -103,6 +103,41 @@ git push origin minha-nova-feature
 
 5. Abra um Pull Request.
 
+## Deploy para GitHub Pages
+
+1. Instale `gh-pages` como dependência de desenvolvimento:
+
+```bash
+yarn add gh-pages --dev
+```
+
+2. Adicione a propriedade `homepage` no `package.json`:
+
+```json
+"homepage": "https://seu-usuario.github.io/nome-do-repositorio"
+```
+
+3. Adicione os scripts de pré-deploy e deploy no `package.json`:
+
+```json
+"scripts": {
+  "predeploy": "yarn build",
+  "deploy": "gh-pages -d build",
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+}
+```
+
+4. Faça o deploy executando o comando:
+
+```bash
+yarn deploy
+```
+
+5. O projeto estará acessível em `https://seu-usuario.github.io/nome-do-repositorio`.
+
 ## Licença
 
 Este projeto está licenciado sob a MIT License. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
