@@ -110,7 +110,7 @@ git push origin minha-nova-feature
 
 ## Deploy para GitHub Pages
 
-1. Atualize a propriedade para o endereço com dados da sua conta e do seu repositório no campo `homepage` no `package.json`:
+1. Atualize a propriedade `homepage` para o endereço com dados da sua conta e do seu repositório no `package.json`:
 
 ```json
 "homepage": "https://seu-usuario.github.io/nome-do-repositorio"
