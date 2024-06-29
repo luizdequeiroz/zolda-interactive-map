@@ -25,10 +25,25 @@ jobs:
       run: yarn build
 
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+      run: |
+        git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
+        git config --global user.name "$GITHUB_ACTOR"
+        git remote set-url origin "https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+        git fetch origin
+        git checkout -b deploy
+        mkdir -p public
+        cp -r build/* public/
+        git add public
+        git commit -m "Deploy to GitHub Pages"
+        git push origin deploy
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
-        publish_branch: gh-pages
-        user_name: ${{ secrets.USER_NAME }}
-        user_email: ${{ secrets.USER_EMAIL }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: "Deploy to GitHub Pages"
+        branch: deploy
+        title: "Deploy to GitHub Pages"
+        body: "This PR deploys the latest changes to GitHub Pages."
+        base: gh-pages
+        author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"

@@ -1,6 +1,6 @@
 // src/components/Map.js
 import React, { useState, useEffect, useRef } from 'react';
-import { MapContainer, ImageOverlay, Marker, Popup, Polyline } from 'react-leaflet';
+import { MapContainer, ImageOverlay, Marker, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { CRS, LatLngBounds, latLng } from 'leaflet';
 import Search from './Search';
@@ -9,6 +9,7 @@ import DistanceInfo from './DistanceInfo';
 import InfoPanel from './InfoPanel';
 import LayerControl from './LayerControl';
 import { firstMarkerIcon, subsequentMarkerIcon } from './MarkerIcon';
+import MarkerPanel from './MarkerPanel';
 
 const center = [12.77, -36.37];
 const bounds = new LatLngBounds(
@@ -38,6 +39,8 @@ function Map() {
   const [speed, setSpeed] = useState(4.17); // velocidade padrão para "Passos Curtos"
   const [travelTime, setTravelTime] = useState({ days: 0, hours: 0, minutes: 0 });
   const [popupInfo, setPopupInfo] = useState(null);
+  const [activeMarker, setActiveMarker] = useState(null);
+  const [markerData, setMarkerData] = useState({});
   const mapRef = useRef();
 
   useEffect(() => {
@@ -67,6 +70,8 @@ function Map() {
     setMarkers((prevMarkers) => {
       const newMarkers = [...prevMarkers];
       newMarkers.splice(idx, 1);
+      const newMarkerData = { ...markerData };
+      delete newMarkerData[idx];
       return newMarkers;
     });
   };
@@ -78,6 +83,17 @@ function Map() {
       newMarkers[idx] = [newPosition.lat, newPosition.lng];
       return newMarkers;
     });
+  };
+
+  const handleMarkerClick = (idx) => {
+    setActiveMarker(idx);
+  };
+
+  const handleMarkerDataChange = (idx, title, description) => {
+    setMarkerData((prevData) => ({
+      ...prevData,
+      [idx]: { title, description }
+    }));
   };
 
   return (
@@ -105,13 +121,10 @@ function Map() {
             draggable={true}
             eventHandlers={{
               contextmenu: () => handleRightClick(idx), // Manipulador para clique direito
-              dragend: (event) => handleDragEnd(event, idx) // Manipulador para o fim do arrasto
+              dragend: (event) => handleDragEnd(event, idx), // Manipulador para o fim do arrasto
+              click: () => handleMarkerClick(idx) // Manipulador para clique
             }}
-          >
-            <Popup>
-              Marcador {idx + 1}
-            </Popup>
-          </Marker>
+          />
         ))}
         {markers.length > 1 && (
           <Polyline
@@ -130,6 +143,13 @@ function Map() {
         setSpeed={setSpeed}
       />
       <InfoPanel popupInfo={popupInfo} />
+      {activeMarker !== null && (
+        <MarkerPanel
+          markerData={markerData[activeMarker] || { title: '', description: '' }}
+          onChange={(title, description) => handleMarkerDataChange(activeMarker, title, description)}
+          onClose={() => setActiveMarker(null)}
+        />
+      )}
     </div>
   );
 }
