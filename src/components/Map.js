@@ -142,7 +142,7 @@ function Map() {
         speed={speed}
         setSpeed={setSpeed}
       />
-      <InfoPanel popupInfo={popupInfo} />
+      <InfoPanel popupInfo={popupInfo} onClose={() => setPopupInfo(null)} />
       {activeMarker !== null && (
         <MarkerPanel
           markerData={markerData[activeMarker] || { title: '', description: '' }}

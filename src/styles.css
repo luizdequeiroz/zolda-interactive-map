@@ -13,6 +13,13 @@
   flex-direction: column;
 }
 
+.search-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: move;
+}
+
 .search-container input {
   padding: 5px;
   width: 100%; /* Ajustar a largura para 100% do contêiner */
@@ -58,28 +65,23 @@
   height: 50%;
   max-height: calc(100vh - 200px);
   z-index: 1000;
-  overflow-y: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden; /* Ocultar o overflow externo */
+}
+
+.info-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: move;
+  height: 30px;
 }
 
 .info-panel .description {
-  max-height: 100%;
+  height: calc(100% - 40px); /* Ajuste a altura para não cortar o conteúdo */
   overflow-y: auto;
 }
 
-@media (max-width: 800px) {
-  .search-container {
-    left: 10px;
-    right: 10px;
-  }
-
-  .search-container input,
-  .search-container ul {
-    width: 100%; /* Ajustar a largura para 100% do contêiner */
-  }
-}
-
-/* src/styles.css */
 .marker-panel {
   position: absolute;
   top: 100px; /* Ajuste conforme necessário */
@@ -91,6 +93,14 @@
   width: 300px;
   z-index: 1000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.marker-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: move;
+  height: 30px;
 }
 
 .marker-panel-content {
@@ -118,4 +128,23 @@
 
 .marker-panel-actions button {
   margin-left: 10px;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  .search-container {
+    left: 10px;
+    right: 10px;
+  }
+
+  .search-container input,
+  .search-container ul {
+    width: 100%; /* Ajustar a largura para 100% do contêiner */
+  }
 }
