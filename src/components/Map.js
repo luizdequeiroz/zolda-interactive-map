@@ -63,6 +63,14 @@ function Map() {
     }
   };
 
+  const handleRightClick = (idx) => {
+    setMarkers((prevMarkers) => {
+      const newMarkers = [...prevMarkers];
+      newMarkers.splice(idx, 1);
+      return newMarkers;
+    });
+  };
+
   return (
     <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
       <MapContainer
@@ -86,6 +94,9 @@ function Map() {
             position={position}
             icon={idx === 0 ? firstMarkerIcon : subsequentMarkerIcon}
             zIndexOffset={1000} // Garantir que os marcadores tenham um z-index suficientemente alto
+            eventHandlers={{
+              contextmenu: () => handleRightClick(idx), // Manipulador para clique direito
+            }}
           >
             <Popup>
               Marcador {idx + 1}
