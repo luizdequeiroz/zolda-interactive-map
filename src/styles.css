@@ -148,3 +148,7 @@
     width: 100%; /* Ajustar a largura para 100% do contêiner */
   }
 }
+
+.search-container ul li.active {
+  background-color: #d3d3d3; /* Cor de fundo para a sugestão ativa */
+}

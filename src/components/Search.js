@@ -1,30 +1,58 @@
 // src/components/Search.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import locations from '../database';
-import '../styles.css'; // Importar o arquivo CSS
 
 function Search({ setCenter, setPopupInfo }) {
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
+  const [activeSuggestion, setActiveSuggestion] = useState(0);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setQuery(value);
-    if (value.length > 0) {
+  useEffect(() => {
+    if (query) {
       const filteredSuggestions = locations.filter(location =>
-        location.name.toLowerCase().includes(value.toLowerCase())
+        location.name.toLowerCase().includes(query.toLowerCase())
       );
       setSuggestions(filteredSuggestions);
+      setShowSuggestions(true);
     } else {
       setSuggestions([]);
+      setShowSuggestions(false);
+    }
+  }, [query]);
+
+  const handleChange = (e) => {
+    setQuery(e.target.value);
+  };
+
+  const handleClick = (suggestion) => {
+    setQuery(suggestion.name);
+    setCenter([suggestion.lat, suggestion.lng]);
+    setPopupInfo(suggestion);
+    setShowSuggestions(false);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'ArrowDown') {
+      if (activeSuggestion < suggestions.length - 1) {
+        setActiveSuggestion(activeSuggestion + 1);
+      }
+    } else if (e.key === 'ArrowUp') {
+      if (activeSuggestion > 0) {
+        setActiveSuggestion(activeSuggestion - 1);
+      }
+    } else if (e.key === 'Enter') {
+      setQuery(suggestions[activeSuggestion].name);
+      setCenter([suggestions[activeSuggestion].lat, suggestions[activeSuggestion].lng]);
+      setPopupInfo(suggestions[activeSuggestion]);
+      setShowSuggestions(false);
     }
   };
 
-  const handleSelect = (location) => {
-    setCenter([location.lat, location.lng]);
-    setPopupInfo(location);
-    setQuery(location.name);
-    setSuggestions([]);
+  const handleBlur = () => {
+    setTimeout(() => {
+      setShowSuggestions(false);
+    }, 100);
   };
 
   return (
@@ -33,16 +61,19 @@ function Search({ setCenter, setPopupInfo }) {
         type="text"
         value={query}
         onChange={handleChange}
-        placeholder="Pesquisar local"
+        onKeyDown={handleKeyDown}
+        onBlur={handleBlur}
+        placeholder="Pesquisar região..."
       />
-      {suggestions.length > 0 && (
+      {showSuggestions && query && (
         <ul>
-          {suggestions.map((location, index) => (
+          {suggestions.map((suggestion, index) => (
             <li
-              key={index}
-              onClick={() => handleSelect(location)}
+              key={suggestion.name}
+              onClick={() => handleClick(suggestion)}
+              className={index === activeSuggestion ? 'active' : ''}
             >
-              {location.name}
+              {suggestion.name}
             </li>
           ))}
         </ul>
