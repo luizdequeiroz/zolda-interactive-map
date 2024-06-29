@@ -1,0 +1,72 @@
+/* src/styles.css */
+.search-container {
+    z-index: 1000;
+    position: absolute;
+    top: 10px;
+    left: 50px; /* Ancorado à esquerda com uma distância de 50px */
+    right: 200px; /* Ancorado à direita com uma distância suficiente para não ocupar o espaço do campo de seleção de layer */
+    background: white;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .search-container input {
+    padding: 5px;
+    width: 100%; /* Ajustar a largura para 100% do contêiner */
+    box-sizing: border-box; /* Incluir o padding e border no cálculo da largura */
+  }
+  
+  .search-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: white;
+    width: 100%; /* Ajustar a largura para 100% do contêiner */
+    position: absolute;
+    top: 35px;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  .search-container ul li {
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .layer-control {
+    z-index: 1000;
+    position: absolute;
+    top: 10px;
+    right: 10px; /* Ajuste conforme necessário para ficar ao lado do campo de pesquisa */
+    background: white;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .info-panel {
+    position: absolute;
+    top: 100px;
+    left: 10px;
+    background: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    height: 50%;
+    max-height: calc(100vh - 200px);
+    z-index: 1000;
+    overflow-y: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .info-panel .description {
+    max-height: 100%;
+    overflow-y: auto;
+  }
+  
