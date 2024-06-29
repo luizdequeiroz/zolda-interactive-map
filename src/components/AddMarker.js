@@ -1,5 +1,4 @@
 // src/components/AddMarker.js
-import React from 'react';
 import { useMapEvents } from 'react-leaflet';
 
 function AddMarker({ markers, setMarkers }) {
