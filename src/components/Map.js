@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MapContainer, ImageOverlay, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { CRS, latLng, LatLngBounds } from 'leaflet';
+import { CRS, LatLngBounds, latLng } from 'leaflet';
 import Search from './Search';
 import AddMarker from './AddMarker';
 import DistanceInfo from './DistanceInfo';
