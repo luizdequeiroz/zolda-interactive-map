@@ -10,6 +10,8 @@ import InfoPanel from './InfoPanel';
 import LayerControl from './LayerControl';
 import { firstMarkerIcon, subsequentMarkerIcon } from './MarkerIcon';
 import MarkerPanel from './MarkerPanel';
+import AddPin from './AddPin'; // Importando o componente de adicionar pinos
+import { pinIcon } from './PinIcon'; // Importando o ícone do pino
 
 const center = [12.77, -36.37];
 const bounds = new LatLngBounds(
@@ -35,12 +37,15 @@ function calculateTime(distance, speed) {
 
 function Map() {
   const [markers, setMarkers] = useState([]);
+  const [pins, setPins] = useState([]); // Adicionando estado para pinos
   const [distance, setDistance] = useState(0);
   const [speed, setSpeed] = useState(4.17); // velocidade padrão para "Passos Curtos"
   const [travelTime, setTravelTime] = useState({ days: 0, hours: 0, minutes: 0 });
   const [popupInfo, setPopupInfo] = useState(null);
   const [activeMarker, setActiveMarker] = useState(null);
+  const [activePin, setActivePin] = useState(null); // Estado para o pino ativo
   const [markerData, setMarkerData] = useState({});
+  const [pinData, setPinData] = useState({}); // Estado para dados dos pinos
   const mapRef = useRef();
 
   useEffect(() => {
@@ -76,6 +81,16 @@ function Map() {
     });
   };
 
+  const handlePinRightClick = (idx) => {
+    setPins((prevPins) => {
+      const newPins = [...prevPins];
+      newPins.splice(idx, 1);
+      const newPinData = { ...pinData };
+      delete newPinData[idx];
+      return newPins;
+    });
+  };
+
   const handleDragEnd = (event, idx) => {
     const newPosition = event.target.getLatLng();
     setMarkers((prevMarkers) => {
@@ -85,12 +100,32 @@ function Map() {
     });
   };
 
+  const handlePinDragEnd = (event, idx) => {
+    const newPosition = event.target.getLatLng();
+    setPins((prevPins) => {
+      const newPins = [...prevPins];
+      newPins[idx] = [newPosition.lat, newPosition.lng];
+      return newPins;
+    });
+  };
+
   const handleMarkerClick = (idx) => {
     setActiveMarker(idx);
   };
 
+  const handlePinClick = (idx) => {
+    setActivePin(idx);
+  };
+
   const handleMarkerDataChange = (idx, title, description) => {
     setMarkerData((prevData) => ({
+      ...prevData,
+      [idx]: { title, description }
+    }));
+  };
+
+  const handlePinDataChange = (idx, title, description) => {
+    setPinData((prevData) => ({
       ...prevData,
       [idx]: { title, description }
     }));
@@ -113,6 +148,7 @@ function Map() {
           bounds={bounds}
         />
         <AddMarker markers={markers} setMarkers={setMarkers} />
+        <AddPin pins={pins} setPins={setPins} /> {/* Componente para adicionar pinos */}
         {markers.map((position, idx) => (
           <Marker
             key={`marker-${idx}`}
@@ -123,6 +159,19 @@ function Map() {
               contextmenu: () => handleRightClick(idx), // Manipulador para clique direito
               dragend: (event) => handleDragEnd(event, idx), // Manipulador para o fim do arrasto
               click: () => handleMarkerClick(idx) // Manipulador para clique
+            }}
+          />
+        ))}
+        {pins.map((position, idx) => (
+          <Marker
+            key={`pin-${idx}`}
+            position={position}
+            icon={pinIcon} // Ícone do pino
+            draggable={true} // Permitir arrastar
+            eventHandlers={{
+              contextmenu: () => handlePinRightClick(idx), // Manipulador para clique direito no pino
+              dragend: (event) => handlePinDragEnd(event, idx), // Manipulador para o fim do arrasto do pino
+              click: () => handlePinClick(idx) // Manipulador para clique no pino
             }}
           />
         ))}
@@ -148,6 +197,13 @@ function Map() {
           markerData={markerData[activeMarker] || { title: '', description: '' }}
           onChange={(title, description) => handleMarkerDataChange(activeMarker, title, description)}
           onClose={() => setActiveMarker(null)}
+        />
+      )}
+      {activePin !== null && (
+        <MarkerPanel
+          markerData={pinData[activePin] || { title: '', description: '' }}
+          onChange={(title, description) => handlePinDataChange(activePin, title, description)}
+          onClose={() => setActivePin(null)}
         />
       )}
     </div>
