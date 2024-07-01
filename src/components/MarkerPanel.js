@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles.css'; // Importar o arquivo CSS
 
-function MarkerPanel({ markerData, onChange, onClose }) {
+function MarkerPanel({ markerData, onChange, onClose, isPin, coordinates }) {
   const [title, setTitle] = useState(markerData.title);
   const [description, setDescription] = useState(markerData.description);
   const panelRef = useRef(null);
@@ -42,7 +42,7 @@ function MarkerPanel({ markerData, onChange, onClose }) {
   return (
     <div className="marker-panel" ref={panelRef}>
       <div className="marker-panel-header" onMouseDown={handleMouseDown}>
-        <h3>Editar Marcador</h3>
+        <h3>{isPin ? 'Editar Pino' : 'Editar Marcador'}</h3>
         <button className="close-button" onClick={onClose}>×</button>
       </div>
       <div className="marker-panel-content">
@@ -66,9 +66,13 @@ function MarkerPanel({ markerData, onChange, onClose }) {
           <button onClick={handleSave}>Salvar</button>
           <button onClick={onClose}>Cancelar</button>
         </div>
+        <div className="coordinates">
+          <small>Lat: {coordinates.lat.toFixed(3)}, Lng: {coordinates.lng.toFixed(3)}</small>
+        </div>
       </div>
     </div>
   );
 }
 
 export default MarkerPanel;
+

@@ -198,6 +198,8 @@ function Map() {
           markerData={markerData[activeMarker] || { title: '', description: '' }}
           onChange={(title, description) => handleMarkerDataChange(activeMarker, title, description)}
           onClose={() => setActiveMarker(null)}
+          isPin={false}
+          coordinates={markers.find(marker => marker.id === activeMarker)}
         />
       )}
       {activePin !== null && (
@@ -205,6 +207,8 @@ function Map() {
           markerData={pinData[activePin] || { title: '', description: '' }}
           onChange={(title, description) => handlePinDataChange(activePin, title, description)}
           onClose={() => setActivePin(null)}
+          isPin={true}
+          coordinates={pins.find(pin => pin.id === activePin)}
         />
       )}
     </div>
