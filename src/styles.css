@@ -257,3 +257,31 @@ select:focus {
     width: 100%; /* Ajustar a largura para 100% do contêiner */
   }
 }
+
+.info-container {
+  z-index: 1000;
+  position: fixed; /* Alterado de 'absolute' para 'fixed' */
+  bottom: 0; /* Fixar no fundo da página */
+  left: 0; /* Fixar na esquerda */
+  width: 100%; /* Abarcar toda a largura da página */
+  background: white; /* Cor de fundo */
+  padding: 10px; /* Espaçamento interno */
+  border-top: 1px solid #ccc; /* Borda superior */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alinhar à esquerda */
+}
+
+.info-item {
+  margin-right: 20px; /* Espaçamento entre os itens */
+  display: flex;
+  align-items: center;
+}
+
+.info-item label {
+  margin-right: 5px; /* Espaçamento entre label e select */
+}
+
+.controls select {
+  padding: 5px;
+}

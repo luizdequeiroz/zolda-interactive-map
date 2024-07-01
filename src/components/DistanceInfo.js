@@ -1,14 +1,16 @@
 // src/components/DistanceInfo.js
 import React from 'react';
 
-function DistanceInfo({ distance, travelTime, speed, setSpeed }) {
+function DistanceInfo({ distance, travelTime, speed, setSpeed, handleExport, handleImport }) {
   return (
-    <div className="info-container" style={{ zIndex: 1000, position: 'absolute', bottom: '10px', left: '10px', background: 'white', padding: '5px', border: '1px solid #ccc', borderRadius: '3px', display: 'flex', alignItems: 'center' }}>
-      <div className="distance-info" style={{ marginRight: '20px' }}>
-        <strong>Distância Total: </strong>{distance.toFixed(2)} km<br />
-        <strong>Tempo de Viagem: </strong>{travelTime.days} dias {travelTime.hours} horas {travelTime.minutes} minutos
+    <div className="info-container">
+      <div className="info-item">
+        <strong>Distância Total: </strong>&nbsp;{distance.toFixed(2)} km
       </div>
-      <div className="controls">
+      <div className="info-item">
+        <strong>Tempo de Viagem: </strong>&nbsp;{travelTime.days} dias {travelTime.hours} horas {travelTime.minutes} minutos
+      </div>
+      <div className="info-item controls">
         <label>
           Modo de Transporte:
           <select value={speed} onChange={e => setSpeed(Number(e.target.value))}>
@@ -22,6 +24,12 @@ function DistanceInfo({ distance, travelTime, speed, setSpeed }) {
             <option value={300.0}>Voo Rápido (300 km/h)</option>
           </select>
         </label>
+      </div>
+      <div className="info-item">
+        <button onClick={handleExport}>Exportar</button>
+      </div>
+      <div className="info-item">
+        <button onClick={handleImport}>Importar</button>
       </div>
     </div>
   );

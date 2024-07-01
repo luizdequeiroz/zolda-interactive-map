@@ -1,3 +1,4 @@
+// src/components/Map.js
 import React, { useState, useEffect, useRef } from 'react';
 import { MapContainer, ImageOverlay, Marker, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -132,6 +133,36 @@ function Map() {
     }));
   };
 
+  const handleExport = () => {
+    const data = {
+      markers,
+      markerData,
+      pins,
+      pinData
+    };
+    const json = JSON.stringify(data);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'map-data.json';
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleImport = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const data = JSON.parse(e.target.result);
+      setMarkers(data.markers);
+      setMarkerData(data.markerData);
+      setPins(data.pins);
+      setPinData(data.pinData);
+    };
+    reader.readAsText(file);
+  };
+
   return (
     <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
       <MapContainer
@@ -191,6 +222,15 @@ function Map() {
         travelTime={travelTime}
         speed={speed}
         setSpeed={setSpeed}
+        handleExport={handleExport}
+        handleImport={() => document.getElementById('importInput').click()}
+      />
+      <input
+        type="file"
+        id="importInput"
+        style={{ display: 'none' }}
+        accept=".json"
+        onChange={handleImport}
       />
       <InfoPanel popupInfo={popupInfo} onClose={() => setPopupInfo(null)} />
       {activeMarker !== null && (
