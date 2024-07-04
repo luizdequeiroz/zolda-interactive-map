@@ -21,4 +21,12 @@ const initializeDice = async () => {
   }
 };
 
-export { Dice, initializeDice };
+const addDice = (notation) => {
+  Dice.add(notation);
+};
+
+const resetDice = () => {
+  Dice.clear();
+};
+
+export { Dice, initializeDice, addDice, resetDice };

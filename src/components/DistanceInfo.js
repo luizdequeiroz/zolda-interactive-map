@@ -1,6 +1,6 @@
 import React from 'react';
 
-function DistanceInfo({ distance, travelTime, speed, setSpeed, handleExport, handleImport, rollDice }) {
+function DistanceInfo({ distance, travelTime, speed, setSpeed, handleExport, handleImport, rollDice, resetDice }) {
   return (
     <div className="info-container">
       <div className="info-item">
@@ -31,6 +31,7 @@ function DistanceInfo({ distance, travelTime, speed, setSpeed, handleExport, han
         <button onClick={() => rollDice("1d10")}>d10</button>
         <button onClick={() => rollDice("1d12")}>d12</button>
         <button onClick={() => rollDice("1d20")}>d20</button>
+        <button onClick={resetDice}>Limpar Dados</button>
       </div>
       <div className="info-item">
         <button onClick={handleExport}>Exportar</button>

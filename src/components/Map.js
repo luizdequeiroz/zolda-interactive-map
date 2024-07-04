@@ -11,7 +11,7 @@ import { firstMarkerIcon, subsequentMarkerIcon } from './MarkerIcon';
 import MarkerPanel from './MarkerPanel';
 import AddPin from './AddPin';
 import { pinIcon } from './PinIcon';
-import { Dice, initializeDice } from './DiceRoller/DiceBox';
+import { initializeDice, addDice, resetDice } from './DiceRoller/DiceBox';
 
 const center = [12.77, -36.37];
 const bounds = new LatLngBounds(
@@ -165,7 +165,7 @@ function Map() {
 
   const rollDice = async (notation) => {
     await initializeDice();
-    Dice.show().roll(notation);
+    addDice(notation);
   };
 
   return (
@@ -230,6 +230,7 @@ function Map() {
         handleExport={handleExport}
         handleImport={() => document.getElementById('importInput').click()}
         rollDice={rollDice}
+        resetDice={resetDice}
       />
       <input
         type="file"
