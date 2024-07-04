@@ -1,5 +1,5 @@
-// src/components/DiceRollerPanel.js
 import React, { useRef } from 'react';
+import DiceRoller from './DiceRoller';
 
 function DiceRollerPanel({ onClose }) {
   const panelRef = useRef(null);
@@ -26,11 +26,6 @@ function DiceRollerPanel({ onClose }) {
     };
   };
 
-  const rollDice = (diceType) => {
-    const diceBox = window.Dice; // Ensure DiceBox is globally accessible
-    diceBox.show().roll(diceType);
-  };
-
   return (
     <div className="dice-roller-panel" ref={panelRef}>
       <div className="dice-roller-panel-header" onMouseDown={handleMouseDown}>
@@ -38,12 +33,7 @@ function DiceRollerPanel({ onClose }) {
         <button className="close-button" onClick={onClose}>×</button>
       </div>
       <div className="dice-roller-panel-content">
-        <button onClick={() => rollDice("1d4")}>Roll d4</button>
-        <button onClick={() => rollDice("1d6")}>Roll d6</button>
-        <button onClick={() => rollDice("1d8")}>Roll d8</button>
-        <button onClick={() => rollDice("1d10")}>Roll d10</button>
-        <button onClick={() => rollDice("1d12")}>Roll d12</button>
-        <button onClick={() => rollDice("1d20")}>Roll d20</button>
+        <DiceRoller />
       </div>
     </div>
   );

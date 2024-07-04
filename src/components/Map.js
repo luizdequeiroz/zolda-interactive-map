@@ -11,7 +11,7 @@ import { firstMarkerIcon, subsequentMarkerIcon } from './MarkerIcon';
 import MarkerPanel from './MarkerPanel';
 import AddPin from './AddPin';
 import { pinIcon } from './PinIcon';
-import DiceRollerPanel from './DiceRollerPanel';
+import { Dice, initializeDice } from './DiceRoller/DiceBox';
 
 const center = [12.77, -36.37];
 const bounds = new LatLngBounds(
@@ -46,7 +46,6 @@ function Map() {
   const [activePin, setActivePin] = useState(null);
   const [markerData, setMarkerData] = useState({});
   const [pinData, setPinData] = useState({});
-  const [showDiceRoller, setShowDiceRoller] = useState(false);
   const mapRef = useRef();
 
   useEffect(() => {
@@ -164,8 +163,9 @@ function Map() {
     reader.readAsText(file);
   };
 
-  const toggleDiceRoller = () => {
-    setShowDiceRoller(prev => !prev);
+  const rollDice = async (notation) => {
+    await initializeDice();
+    Dice.show().roll(notation);
   };
 
   return (
@@ -229,7 +229,7 @@ function Map() {
         setSpeed={setSpeed}
         handleExport={handleExport}
         handleImport={() => document.getElementById('importInput').click()}
-        toggleDiceRoller={toggleDiceRoller}
+        rollDice={rollDice}
       />
       <input
         type="file"
@@ -257,8 +257,6 @@ function Map() {
           coordinates={pins.find(pin => pin.id === activePin)}
         />
       )}
-      {showDiceRoller && <DiceRollerPanel onClose={toggleDiceRoller} />}
-      <div id="dice-box"></div>
     </div>
   );
 }

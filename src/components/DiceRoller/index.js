@@ -1,42 +1,25 @@
-import { useState } from "react";
-import { dataAttributes } from "./dataAttributes";
-import { Dice } from "./DiceBox";
+import React, { useEffect } from "react";
+import { Dice, initializeDice } from "./DiceBox";
 import "./index.css";
 
-// initialize the Dice Box outside of the component
-Dice.init().then(() => {
-  // clear dice on click anywhere on the screen
-  document.addEventListener("mousedown", () => {
-    const diceBoxCanvas = document.getElementById("dice-canvas");
-    if (window.getComputedStyle(diceBoxCanvas).display !== "none") {
-      Dice.hide().clear();
-    }
-  });
-});
-
 export default function DiceRoller() {
-  const [attr, setAttr] = useState(dataAttributes);
-  const [pendingRoll] = useState();
-
-  // This method is triggered whenever dice are finished rolling
-  Dice.onRollComplete = (results) => {
-    console.log(results);
-
-    const newState = { ...attr };
-
-    if (pendingRoll === "all") {
-      Object.keys(newState).forEach((attr, i) => {
-        newState[attr].total = results[i].value;
+  useEffect(() => {
+    initializeDice().then(() => {
+      document.addEventListener("mousedown", () => {
+        const diceBoxCanvas = document.getElementById("dice-canvas");
+        if (window.getComputedStyle(diceBoxCanvas).display !== "none") {
+          Dice.hide().clear();
+        }
       });
-    } else {
-      newState[pendingRoll].total = results[0].value;
-    }
-    setAttr(newState);
-  };
+    });
+  }, []);
 
-  // trigger dice roll
   const rollDice = (notation) => {
-    // trigger the dice roll
+    const canvas = document.getElementById("dice-canvas");
+    if (canvas && !canvas.hasAttribute("data-transferred")) {
+      canvas.transferControlToOffscreen();
+      canvas.setAttribute("data-transferred", "true");
+    }
     Dice.show().roll(notation);
   };
 
