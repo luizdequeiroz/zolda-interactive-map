@@ -5,10 +5,20 @@ const Dice = new DiceBox(
   {
     id: "dice-canvas",
     assetPath: `${process.env.PUBLIC_URL}/assets/dice-box/`,
-    startingHeight: 8,
-    throwForce: 6,
-    spinForce: 5,
-    lightIntensity: 0.9
+    gravity: 1,
+    mass: 1,
+    friction: 0.8,
+    restitution: 0.5,
+    angularDamping: 0.5,
+    linearDamping: 0.5,
+    spinForce: 6,
+    throwForce: 8,
+    startingHeight: 10,
+    lightIntensity: 1,
+    enableShadows: true,
+    shadowTransparency: 0.8,
+    theme: 'default',
+    scale: 6
   }
 );
 
