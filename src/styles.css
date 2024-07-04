@@ -260,28 +260,143 @@ select:focus {
 
 .info-container {
   z-index: 1000;
-  position: fixed; /* Alterado de 'absolute' para 'fixed' */
-  bottom: 0; /* Fixar no fundo da página */
-  left: 0; /* Fixar na esquerda */
-  width: 100%; /* Abarcar toda a largura da página */
-  background: white; /* Cor de fundo */
-  padding: 10px; /* Espaçamento interno */
-  border-top: 1px solid #ccc; /* Borda superior */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  padding: 10px;
+  border-top: 1px solid #ccc;
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Alinhar à esquerda */
+  justify-content: flex-start;
 }
 
 .info-item {
-  margin-right: 20px; /* Espaçamento entre os itens */
+  margin-right: 20px;
   display: flex;
   align-items: center;
 }
 
 .info-item label {
-  margin-right: 5px; /* Espaçamento entre label e select */
+  margin-right: 5px;
 }
 
 .controls select {
   padding: 5px;
+}
+
+.dice-roller-panel {
+  position: absolute;
+  top: 100px; /* Ajuste conforme necessário */
+  left: 10px;
+  background: white;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 300px;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.dice-roller-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: move;
+  height: 30px;
+}
+
+.dice-roller-panel-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.dice-roller-panel-content label {
+  margin-bottom: 10px;
+}
+
+.dice-roller-panel-content input,
+.dice-roller-panel-content textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.dice-roller-panel-content input:focus,
+.dice-roller-panel-content textarea:focus {
+  border-color: #66afe9;
+  outline: none;
+  box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
+}
+
+.dice-roller-panel-content input[type="checkbox"] {
+  width: auto;
+  margin-top: 0;
+}
+
+.dice-roller-panel-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.dice-roller-panel-actions button {
+  padding: 10px 15px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dice-roller-panel-actions button:hover {
+  background-color: #e0e0e0;
+}
+
+.dice-roller-panel-actions button:active {
+  background-color: #d0d0d0;
+}
+
+.dice-roller-panel-actions button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
+}
+
+#dice-box,
+#dice-box canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+.dice-roller {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.dice-button {
+  padding: 10px;
+  margin: 5px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.dice-button:hover {
+  background-color: #e0e0e0;
+}
+
+.dice-button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
 }

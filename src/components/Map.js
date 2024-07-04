@@ -1,4 +1,3 @@
-// src/components/Map.js
 import React, { useState, useEffect, useRef } from 'react';
 import { MapContainer, ImageOverlay, Marker, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -12,6 +11,7 @@ import { firstMarkerIcon, subsequentMarkerIcon } from './MarkerIcon';
 import MarkerPanel from './MarkerPanel';
 import AddPin from './AddPin';
 import { pinIcon } from './PinIcon';
+import { initializeDice, addDice, resetDice } from './DiceRoller/DiceBox';
 
 const center = [12.77, -36.37];
 const bounds = new LatLngBounds(
@@ -163,6 +163,11 @@ function Map() {
     reader.readAsText(file);
   };
 
+  const rollDice = async (notation) => {
+    await initializeDice();
+    addDice(notation);
+  };
+
   return (
     <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
       <MapContainer
@@ -224,6 +229,8 @@ function Map() {
         setSpeed={setSpeed}
         handleExport={handleExport}
         handleImport={() => document.getElementById('importInput').click()}
+        rollDice={rollDice}
+        resetDice={resetDice}
       />
       <input
         type="file"
