@@ -1,7 +1,7 @@
 // src/components/DistanceInfo.js
 import React from 'react';
 
-function DistanceInfo({ distance, travelTime, speed, setSpeed, handleExport, handleImport }) {
+function DistanceInfo({ distance, travelTime, speed, setSpeed, handleExport, handleImport, toggleDiceRoller }) {
   return (
     <div className="info-container">
       <div className="info-item">
@@ -30,6 +30,9 @@ function DistanceInfo({ distance, travelTime, speed, setSpeed, handleExport, han
       </div>
       <div className="info-item">
         <button onClick={handleImport}>Importar</button>
+      </div>
+      <div className="info-item">
+        <button onClick={toggleDiceRoller}>Abrir Rolador de Dados</button>
       </div>
     </div>
   );

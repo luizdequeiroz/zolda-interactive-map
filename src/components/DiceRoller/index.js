@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { dataAttributes } from "./dataAttributes";
 import { Dice } from "./DiceBox";
-import Attributes from "./Attributes";
+import "./index.css";
 
 // initialize the Dice Box outside of the component
 Dice.init().then(() => {
@@ -16,7 +16,7 @@ Dice.init().then(() => {
 
 export default function DiceRoller() {
   const [attr, setAttr] = useState(dataAttributes);
-  const [pendingRoll, setPendingRoll] = useState();
+  const [pendingRoll] = useState();
 
   // This method is triggered whenever dice are finished rolling
   Dice.onRollComplete = (results) => {
@@ -34,25 +34,20 @@ export default function DiceRoller() {
     setAttr(newState);
   };
 
-  // update attribute from numerical input
-  const updateAttributes = (newState) => {
-    console.log("update the attributes");
-    setAttr(newState);
-  };
-
   // trigger dice roll
-  const rollDice = (notation, group) => {
-    // save which attribute we're rolling for
-    setPendingRoll(group);
+  const rollDice = (notation) => {
     // trigger the dice roll
     Dice.show().roll(notation);
   };
 
   return (
-    <Attributes
-      attributes={attr} // pass in attribute numbers from App state
-      onRoll={rollDice} // pass down roll function
-      onChange={updateAttributes} // pass down onChange function
-    />
+    <div className="dice-roller">
+      <button className="dice-button" onClick={() => rollDice("1d4")}>Roll d4</button>
+      <button className="dice-button" onClick={() => rollDice("1d6")}>Roll d6</button>
+      <button className="dice-button" onClick={() => rollDice("1d8")}>Roll d8</button>
+      <button className="dice-button" onClick={() => rollDice("1d10")}>Roll d10</button>
+      <button className="dice-button" onClick={() => rollDice("1d12")}>Roll d12</button>
+      <button className="dice-button" onClick={() => rollDice("1d20")}>Roll d20</button>
+    </div>
   );
 }

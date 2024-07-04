@@ -1,4 +1,3 @@
-// src/components/Map.js
 import React, { useState, useEffect, useRef } from 'react';
 import { MapContainer, ImageOverlay, Marker, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -47,7 +46,7 @@ function Map() {
   const [activePin, setActivePin] = useState(null);
   const [markerData, setMarkerData] = useState({});
   const [pinData, setPinData] = useState({});
-  const [popupDiceRoller, setPopupDiceRoller] = useState(null);
+  const [showDiceRoller, setShowDiceRoller] = useState(false);
   const mapRef = useRef();
 
   useEffect(() => {
@@ -165,6 +164,10 @@ function Map() {
     reader.readAsText(file);
   };
 
+  const toggleDiceRoller = () => {
+    setShowDiceRoller(prev => !prev);
+  };
+
   return (
     <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
       <MapContainer
@@ -226,6 +229,7 @@ function Map() {
         setSpeed={setSpeed}
         handleExport={handleExport}
         handleImport={() => document.getElementById('importInput').click()}
+        toggleDiceRoller={toggleDiceRoller}
       />
       <input
         type="file"
@@ -253,7 +257,8 @@ function Map() {
           coordinates={pins.find(pin => pin.id === activePin)}
         />
       )}
-      <DiceRollerPanel popupInfo={popupDiceRoller} onClose={() => setPopupDiceRoller(null)} />
+      {showDiceRoller && <DiceRollerPanel onClose={toggleDiceRoller} />}
+      <div id="dice-box"></div>
     </div>
   );
 }

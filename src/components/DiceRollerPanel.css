@@ -1,0 +1,35 @@
+.dice-roller-panel {
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    width: 200px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dice-roller-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f0f0f0;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    cursor: move;
+  }
+  
+  .dice-roller-panel-content {
+    padding: 10px;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  

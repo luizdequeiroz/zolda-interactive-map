@@ -16,4 +16,6 @@ const Dice = new DiceBox(
   }
 );
 
+window.Dice = Dice; // Make Dice globally accessible
+
 export { Dice };
