@@ -25,18 +25,18 @@ function DistanceInfo({ distance, travelTime, speed, setSpeed, handleExport, han
         <strong>Tempo de Viagem: </strong>&nbsp;{travelTime.days} dias {travelTime.hours} horas {travelTime.minutes} minutos
       </div>
       <div className="info-item">
+        <button onClick={() => rollDice("1d4")}>d4</button>
+        <button onClick={() => rollDice("1d6")}>d6</button>
+        <button onClick={() => rollDice("1d8")}>d8</button>
+        <button onClick={() => rollDice("1d10")}>d10</button>
+        <button onClick={() => rollDice("1d12")}>d12</button>
+        <button onClick={() => rollDice("1d20")}>d20</button>
+      </div>
+      <div className="info-item">
         <button onClick={handleExport}>Exportar</button>
       </div>
       <div className="info-item">
         <button onClick={handleImport}>Importar</button>
-      </div>
-      <div className="info-item">
-        <button onClick={() => rollDice("1d4")}>Roll d4</button>
-        <button onClick={() => rollDice("1d6")}>Roll d6</button>
-        <button onClick={() => rollDice("1d8")}>Roll d8</button>
-        <button onClick={() => rollDice("1d10")}>Roll d10</button>
-        <button onClick={() => rollDice("1d12")}>Roll d12</button>
-        <button onClick={() => rollDice("1d20")}>Roll d20</button>
       </div>
     </div>
   );
