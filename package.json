@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://luizdequeiroz.github.io/zolda-interactive-map",
   "dependencies": {
+    "@3d-dice/dice-box": "1.0.5",
     "@react-google-maps/api": "^2.7.0",
     "axios": "^1.3.4",
     "bootstrap": "^5.1.3",

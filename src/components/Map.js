@@ -12,6 +12,7 @@ import { firstMarkerIcon, subsequentMarkerIcon } from './MarkerIcon';
 import MarkerPanel from './MarkerPanel';
 import AddPin from './AddPin';
 import { pinIcon } from './PinIcon';
+import DiceRollerPanel from './DiceRollerPanel';
 
 const center = [12.77, -36.37];
 const bounds = new LatLngBounds(
@@ -46,6 +47,7 @@ function Map() {
   const [activePin, setActivePin] = useState(null);
   const [markerData, setMarkerData] = useState({});
   const [pinData, setPinData] = useState({});
+  const [popupDiceRoller, setPopupDiceRoller] = useState(null);
   const mapRef = useRef();
 
   useEffect(() => {
@@ -251,6 +253,7 @@ function Map() {
           coordinates={pins.find(pin => pin.id === activePin)}
         />
       )}
+      <DiceRollerPanel popupInfo={popupDiceRoller} onClose={() => setPopupDiceRoller(null)} />
     </div>
   );
 }
