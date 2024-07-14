@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Dice, initializeDice } from "./DiceBox";
+import { MyDice, initializeDice } from "./DiceBox";
 import "./index.css";
 
 export default function DiceRoller() {
@@ -8,7 +8,7 @@ export default function DiceRoller() {
       document.addEventListener("mousedown", () => {
         const diceBoxCanvas = document.getElementById("dice-canvas");
         if (window.getComputedStyle(diceBoxCanvas).display !== "none") {
-          Dice.hide().clear();
+          MyDice.hide().clear();
         }
       });
     });
@@ -20,7 +20,7 @@ export default function DiceRoller() {
       canvas.transferControlToOffscreen();
       canvas.setAttribute("data-transferred", "true");
     }
-    Dice.show().roll(notation);
+    MyDice.show().roll(notation);
   };
 
   return (

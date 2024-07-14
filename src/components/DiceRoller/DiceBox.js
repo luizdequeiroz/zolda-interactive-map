@@ -1,6 +1,7 @@
 import DiceBox from "@3d-dice/dice-box";
+import DisplayResults from "@3d-dice/dice-ui/src/displayResults";
 
-const Dice = new DiceBox(
+const MyDiceBox = new DiceBox(
   "#dice-box", 
   {
     id: "dice-canvas",
@@ -22,21 +23,28 @@ const Dice = new DiceBox(
   }
 );
 
+const Display = new DisplayResults("#dice-box")
+
 let diceInitialized = false;
 
 const initializeDice = async () => {
   if (!diceInitialized) {
-    await Dice.init();
+    await MyDiceBox.init();
     diceInitialized = true;
+
+    MyDiceBox.onRollComplete = (results) => {
+      Display.showResults(results)
+    }
   }
 };
 
 const addDice = (notation) => {
-  Dice.add(notation);
+  MyDiceBox.add(notation);
 };
 
 const resetDice = () => {
-  Dice.clear();
+  MyDiceBox.clear();
+  Display.clear();
 };
 
-export { Dice, initializeDice, addDice, resetDice };
+export { MyDiceBox, initializeDice, addDice, resetDice, Display };
