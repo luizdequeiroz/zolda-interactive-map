@@ -1,22 +1,24 @@
 {
   "files": {
-    "main.css": "/zolda-interactive-map/static/css/main.6f48888d.css",
-    "main.js": "/zolda-interactive-map/static/js/main.4bf1fae1.js",
+    "main.css": "/zolda-interactive-map/static/css/main.c25bc1db.css",
+    "main.js": "/zolda-interactive-map/static/js/main.7d62bd0b.js",
     "static/js/729.cbf954ce.chunk.js": "/zolda-interactive-map/static/js/729.cbf954ce.chunk.js",
     "static/js/883.3a0c0b58.chunk.js": "/zolda-interactive-map/static/js/883.3a0c0b58.chunk.js",
     "static/js/453.d3735218.chunk.js": "/zolda-interactive-map/static/js/453.d3735218.chunk.js",
+    "static/media/d8.png": "/zolda-interactive-map/static/media/d8.1e84a5c82f8209a17e1a.png",
+    "static/media/d10.png": "/zolda-interactive-map/static/media/d10.3771896a577d5aa50285.png",
     "index.html": "/zolda-interactive-map/index.html",
     "static/media/cancel.svg": "/zolda-interactive-map/static/media/cancel.90cc6ebbc997fd0009fc4ca1d43672d8.svg",
     "static/media/checkmark.svg": "/zolda-interactive-map/static/media/checkmark.098cc633080d19c87bac9ec589b83adb.svg",
     "static/media/minus.svg": "/zolda-interactive-map/static/media/minus.6e3fdad27ffff6dd638eeeb9fc5c0aa0.svg",
-    "main.6f48888d.css.map": "/zolda-interactive-map/static/css/main.6f48888d.css.map",
-    "main.4bf1fae1.js.map": "/zolda-interactive-map/static/js/main.4bf1fae1.js.map",
+    "main.c25bc1db.css.map": "/zolda-interactive-map/static/css/main.c25bc1db.css.map",
+    "main.7d62bd0b.js.map": "/zolda-interactive-map/static/js/main.7d62bd0b.js.map",
     "729.cbf954ce.chunk.js.map": "/zolda-interactive-map/static/js/729.cbf954ce.chunk.js.map",
     "883.3a0c0b58.chunk.js.map": "/zolda-interactive-map/static/js/883.3a0c0b58.chunk.js.map",
     "453.d3735218.chunk.js.map": "/zolda-interactive-map/static/js/453.d3735218.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6f48888d.css",
-    "static/js/main.4bf1fae1.js"
+    "static/css/main.c25bc1db.css",
+    "static/js/main.7d62bd0b.js"
   ]
 }
