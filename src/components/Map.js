@@ -12,6 +12,7 @@ import MarkerPanel from './MarkerPanel';
 import AddPin from './AddPin';
 import { pinIcon } from './PinIcon';
 import { initializeDice, addDice, resetDice } from './DiceRoller/DiceBox';
+import DiceControls from './DiceRoller/DiceControls';
 
 const center = [12.77, -36.37];
 const bounds = new LatLngBounds(
@@ -168,6 +169,10 @@ function Map() {
     addDice(notation);
   };
 
+  const resetDiceHandler = () => {
+    resetDice();
+  };
+
   return (
     <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
       <MapContainer
@@ -229,9 +234,8 @@ function Map() {
         setSpeed={setSpeed}
         handleExport={handleExport}
         handleImport={() => document.getElementById('importInput').click()}
-        rollDice={rollDice}
-        resetDice={resetDice}
       />
+      <DiceControls rollDice={rollDice} resetDice={resetDiceHandler} />
       <input
         type="file"
         id="importInput"

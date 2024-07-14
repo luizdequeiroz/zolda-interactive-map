@@ -400,3 +400,52 @@ select:focus {
   outline: none;
   box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
 }
+
+.dice-controls {
+  position: absolute;
+  top: 60px; /* Adjust as needed to place below the search bar */
+  left: 50px; /* Align with the search bar */
+  display: flex;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.dice-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 50px; /* Adjust as needed */
+  height: 50px; /* Adjust as needed */
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.dice-button.d4 {
+  background-image: url('../public/img/d8.png'); /* Replace with actual path */
+}
+
+.dice-button.d6 {
+  background-image: url('../public/img/d8.png'); /* Replace with actual path */
+}
+
+.dice-button.d8 {
+  background-image: url('../public/img/d8.png'); /* Replace with actual path */
+}
+
+.dice-button.d10 {
+  background-image: url('../public/img/d10.png'); /* Replace with actual path */
+}
+
+.dice-button.d12 {
+  background-image: url('../public/img/d8.png'); /* Replace with actual path */
+}
+
+.dice-button.d20 {
+  background-image: url('../public/img/d8.png'); /* Replace with actual path */
+}
+
+.dice-button.clear {
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+}
