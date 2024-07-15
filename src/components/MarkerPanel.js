@@ -75,4 +75,3 @@ function MarkerPanel({ markerData, onChange, onClose, isPin, coordinates }) {
 }
 
 export default MarkerPanel;
-

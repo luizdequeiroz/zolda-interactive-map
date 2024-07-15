@@ -2,7 +2,7 @@ import DiceBox from "@3d-dice/dice-box";
 import DisplayResults from "@3d-dice/dice-ui/src/displayResults";
 
 const MyDiceBox = new DiceBox(
-  "#dice-box", 
+  "#dice-box",
   {
     id: "dice-canvas",
     assetPath: `${process.env.PUBLIC_URL}/assets/dice-box/`,

@@ -3,8 +3,10 @@
   z-index: 1000;
   position: absolute;
   top: 10px;
-  left: 50px; /* Ancorado à esquerda com uma distância de 50px */
-  right: 10px; /* Ancorado à direita */
+  left: 50px;
+  /* Ancorado à esquerda com uma distância de 50px */
+  right: 10px;
+  /* Ancorado à direita */
   background: white;
   padding: 5px;
   border: 1px solid #ccc;
@@ -22,8 +24,10 @@
 
 .search-container input {
   padding: 5px;
-  width: 100%; /* Ajustar a largura para 100% do contêiner */
-  box-sizing: border-box; /* Incluir o padding e border no cálculo da largura */
+  width: 100%;
+  /* Ajustar a largura para 100% do contêiner */
+  box-sizing: border-box;
+  /* Incluir o padding e border no cálculo da largura */
 }
 
 .search-container ul {
@@ -33,13 +37,16 @@
   border: 1px solid #ccc;
   border-radius: 3px;
   background: white;
-  width: 100%; /* Ajustar a largura para 100% do contêiner */
+  width: 100%;
+  /* Ajustar a largura para 100% do contêiner */
   position: absolute;
   top: 35px;
   left: 0;
   z-index: 1000;
-  max-height: 200px; /* Altura máxima para a lista */
-  overflow-y: auto; /* Adicionar rolagem vertical se necessário */
+  max-height: 200px;
+  /* Altura máxima para a lista */
+  overflow-y: auto;
+  /* Adicionar rolagem vertical se necessário */
 }
 
 .search-container ul li {
@@ -48,11 +55,13 @@
 }
 
 .search-container ul li.active {
-  background-color: #d3d3d3; /* Cor de fundo para a sugestão ativa */
+  background-color: #d3d3d3;
+  /* Cor de fundo para a sugestão ativa */
 }
 
 .layer-control {
-  display: none; /* Ocultar a div vazia */
+  display: none;
+  /* Ocultar a div vazia */
 }
 
 .leaflet-top.leaflet-right {
@@ -61,7 +70,8 @@
 
 .info-panel {
   position: absolute;
-  top: 85px; /* Ajuste conforme necessário para ficar abaixo do campo de seleção de layers */
+  top: 85px;
+  /* Ajuste conforme necessário para ficar abaixo do campo de seleção de layers */
   left: 10px;
   background: white;
   padding: 10px;
@@ -72,7 +82,8 @@
   max-height: calc(100vh - 200px);
   z-index: 1000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  overflow: hidden; /* Ocultar o overflow externo */
+  overflow: hidden;
+  /* Ocultar o overflow externo */
 }
 
 .info-panel-header {
@@ -84,13 +95,15 @@
 }
 
 .info-panel .description {
-  height: calc(100% - 40px); /* Ajuste a altura para não cortar o conteúdo */
+  height: calc(100% - 40px);
+  /* Ajuste a altura para não cortar o conteúdo */
   overflow-y: auto;
 }
 
 .marker-panel {
   position: absolute;
-  top: 100px; /* Ajuste conforme necessário */
+  top: 100px;
+  /* Ajuste conforme necessário */
   left: 10px;
   background: white;
   padding: 10px;
@@ -254,7 +267,8 @@ select:focus {
 
   .search-container input,
   .search-container ul {
-    width: 100%; /* Ajustar a largura para 100% do contêiner */
+    width: 100%;
+    /* Ajustar a largura para 100% do contêiner */
   }
 }
 
@@ -288,7 +302,8 @@ select:focus {
 
 .dice-roller-panel {
   position: absolute;
-  top: 100px; /* Ajuste conforme necessário */
+  top: 100px;
+  /* Ajuste conforme necessário */
   left: 10px;
   background: white;
   padding: 10px;
@@ -403,8 +418,10 @@ select:focus {
 
 .dice-controls {
   position: absolute;
-  bottom: 80px; /* Adjust as needed to place below the search bar */
-  right: 10px; /* Align with the search bar */
+  bottom: 80px;
+  /* Adjust as needed to place below the search bar */
+  right: 10px;
+  /* Align with the search bar */
   display: flex;
   gap: 15px;
   z-index: 1000;
@@ -414,8 +431,10 @@ select:focus {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  width: 50px; /* Adjust as needed */
-  height: 50px; /* Adjust as needed */
+  width: 50px;
+  /* Adjust as needed */
+  height: 50px;
+  /* Adjust as needed */
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -431,27 +450,27 @@ select:focus {
 }
 
 .dice-button.d4 {
-  background-image: url('../public/img/dice.svg#d4_die'); 
+  background-image: url('../public/img/dice.svg#d4_die');
 }
 
 .dice-button.d6 {
-  background-image: url('../public/img/dice.svg#d6_die'); 
+  background-image: url('../public/img/dice.svg#d6_die');
 }
 
 .dice-button.d8 {
-  background-image: url('../public/img/dice.svg#d8_die'); 
+  background-image: url('../public/img/dice.svg#d8_die');
 }
 
 .dice-button.d10 {
-  background-image: url('../public/img/dice.svg#d10_die'); 
+  background-image: url('../public/img/dice.svg#d10_die');
 }
 
 .dice-button.d12 {
-  background-image: url('../public/img/dice.svg#d12_die'); 
+  background-image: url('../public/img/dice.svg#d12_die');
 }
 
 .dice-button.d20 {
-  background-image: url('../public/img/dice.svg#d20_die'); 
+  background-image: url('../public/img/dice.svg#d20_die');
 }
 
 .dice-button.clear {
