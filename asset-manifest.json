@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/zolda-interactive-map/static/css/main.5d91f60f.css",
+    "main.css": "/zolda-interactive-map/static/css/main.ae29a0bc.css",
     "main.js": "/zolda-interactive-map/static/js/main.15c77bd2.js",
     "static/js/729.9871c5cb.chunk.js": "/zolda-interactive-map/static/js/729.9871c5cb.chunk.js",
     "static/js/883.e66aaa12.chunk.js": "/zolda-interactive-map/static/js/883.e66aaa12.chunk.js",
@@ -10,14 +10,14 @@
     "static/media/cancel.svg": "/zolda-interactive-map/static/media/cancel.90cc6ebbc997fd0009fc4ca1d43672d8.svg",
     "static/media/checkmark.svg": "/zolda-interactive-map/static/media/checkmark.098cc633080d19c87bac9ec589b83adb.svg",
     "static/media/minus.svg": "/zolda-interactive-map/static/media/minus.6e3fdad27ffff6dd638eeeb9fc5c0aa0.svg",
-    "main.5d91f60f.css.map": "/zolda-interactive-map/static/css/main.5d91f60f.css.map",
+    "main.ae29a0bc.css.map": "/zolda-interactive-map/static/css/main.ae29a0bc.css.map",
     "main.15c77bd2.js.map": "/zolda-interactive-map/static/js/main.15c77bd2.js.map",
     "729.9871c5cb.chunk.js.map": "/zolda-interactive-map/static/js/729.9871c5cb.chunk.js.map",
     "883.e66aaa12.chunk.js.map": "/zolda-interactive-map/static/js/883.e66aaa12.chunk.js.map",
     "453.3399c7bd.chunk.js.map": "/zolda-interactive-map/static/js/453.3399c7bd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5d91f60f.css",
+    "static/css/main.ae29a0bc.css",
     "static/js/main.15c77bd2.js"
   ]
 }
