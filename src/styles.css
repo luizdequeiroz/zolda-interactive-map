@@ -447,6 +447,7 @@ select:focus {
 
 .dice-button:hover {
   transform: scale(1.1);
+  background-color: transparent;
 }
 
 .dice-button.d4 {
