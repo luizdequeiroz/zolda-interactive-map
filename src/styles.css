@@ -478,3 +478,7 @@ select:focus {
   background-color: red;
   color: white;
 }
+
+.displayResults {
+  z-index: 10001;
+}
