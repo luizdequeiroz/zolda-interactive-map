@@ -60,7 +60,7 @@ const steps = [
     {
         title: "Rolador de Dados",
         description: "Use os botões de dados na parte inferior para lançar dados no mapa. E clique no botão 'Limpar' para remover todos os dados do rolador.",
-        element: ".info-container .dices"
+        element: ".dice-controls"
     },
     {
         title: "Exportar dados de navegação do Mapa",

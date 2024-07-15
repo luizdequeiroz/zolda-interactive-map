@@ -403,10 +403,10 @@ select:focus {
 
 .dice-controls {
   position: absolute;
-  top: 60px; /* Adjust as needed to place below the search bar */
-  left: 50px; /* Align with the search bar */
+  bottom: 80px; /* Adjust as needed to place below the search bar */
+  right: 10px; /* Align with the search bar */
   display: flex;
-  gap: 10px;
+  gap: 15px;
   z-index: 1000;
 }
 
@@ -420,32 +420,41 @@ select:focus {
   background-repeat: no-repeat;
 }
 
+.dice-button:focus,
+.dice-button:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.dice-button:hover {
+  transform: scale(1.1);
+}
+
 .dice-button.d4 {
-  background-image: url('../public/img/d8.png'); /* Replace with actual path */
+  background-image: url('../public/img/dice.svg#d4_die'); 
 }
 
 .dice-button.d6 {
-  background-image: url('../public/img/d8.png'); /* Replace with actual path */
+  background-image: url('../public/img/dice.svg#d6_die'); 
 }
 
 .dice-button.d8 {
-  background-image: url('../public/img/d8.png'); /* Replace with actual path */
+  background-image: url('../public/img/dice.svg#d8_die'); 
 }
 
 .dice-button.d10 {
-  background-image: url('../public/img/d10.png'); /* Replace with actual path */
+  background-image: url('../public/img/dice.svg#d10_die'); 
 }
 
 .dice-button.d12 {
-  background-image: url('../public/img/d8.png'); /* Replace with actual path */
+  background-image: url('../public/img/dice.svg#d12_die'); 
 }
 
 .dice-button.d20 {
-  background-image: url('../public/img/d8.png'); /* Replace with actual path */
+  background-image: url('../public/img/dice.svg#d20_die'); 
 }
 
 .dice-button.clear {
   background-color: red;
   color: white;
-  border-radius: 5px;
 }
