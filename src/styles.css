@@ -109,7 +109,7 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  width: 300px;
+  width: 500px;
   z-index: 1000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -125,6 +125,7 @@
 .marker-panel-content {
   display: flex;
   flex-direction: column;
+  height: 600px;
 }
 
 .marker-panel-content label {
@@ -134,11 +135,18 @@
 .marker-panel-content input,
 .marker-panel-content textarea {
   width: 100%;
+  min-width: 100%;
+  max-width: 100%;
   padding: 10px;
   margin-top: 5px;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.marker-panel-content textarea {
+  min-height: 450px;
+  max-height: 450px;
 }
 
 .marker-panel-content input:focus,
@@ -156,7 +164,7 @@
 .marker-panel-actions {
   display: flex;
   justify-content: flex-end;
-  margin-top: 10px;
+  margin-top: auto;
 }
 
 .marker-panel-actions button {
