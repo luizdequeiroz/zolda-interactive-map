@@ -16,6 +16,8 @@ import DiceControls from './DiceRoller/DiceControls';
 import { useMapEffect } from './Map/effects';
 import { center, bounds, setCenter } from './Map/setup';
 import { handleDragEnd, handleExport, handleImport, handleMarkerClick, handleMarkerDataChange, handlePinClick, handlePinDataChange, handlePinDragEnd, handlePinRightClick, handleRightClick } from './Map/handlers';
+import { useMapPersistence } from '../hooks/useMapPersistence';
+import PersistenceControl from './PersistenceControl';
 
 function Map() {
   const [markers, setMarkers] = useState([]);
@@ -29,6 +31,23 @@ function Map() {
   const [markerData, setMarkerData] = useState({});
   const [pinData, setPinData] = useState({});
   const mapRef = useRef();
+
+  // Hook para gerenciar persistência do estado do mapa
+  const {
+    loadInitialState,
+    saveCurrentState,
+    clearSavedState,
+    getSavedStateInfo
+  } = useMapPersistence(
+    markers,
+    pins,
+    markerData,
+    pinData,
+    setMarkers,
+    setPins,
+    setMarkerData,
+    setPinData
+  );
 
   useMapEffect(markers, speed, setDistance, setTravelTime);
 
@@ -130,6 +149,14 @@ function Map() {
           coordinates={pins.find(pin => pin.id === activePin)}
         />
       )}
+      
+      {/* Controle de Persistência */}
+      <PersistenceControl
+        saveCurrentState={saveCurrentState}
+        clearSavedState={clearSavedState}
+        getSavedStateInfo={getSavedStateInfo}
+        loadInitialState={loadInitialState}
+      />
     </div>
   );
 }

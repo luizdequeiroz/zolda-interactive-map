@@ -51,6 +51,7 @@ zolda-interactive-map/
 │   │   ├── InfoPanel.js     # Painel lateral de informações
 │   │   ├── LayerControl.js  # Controle de camadas do mapa
 │   │   ├── MarkerPanel.js   # Painel de configuração de marcadores
+│   │   ├── PersistenceControl.js # 💾 Controle de persistência do estado
 │   │   ├── Tutorial.js      # Tutorial interativo para novos usuários
 │   │   ├── Tutorial.css     # Estilos específicos do tutorial
 │   │   ├── DiceRoller/      # 🎲 Módulo de dados 3D
@@ -60,8 +61,11 @@ zolda-interactive-map/
 │   │       ├── effects.js   # Hooks e efeitos do mapa
 │   │       ├── handlers.js  # Event handlers (drag, click, etc.)
 │   │       └── setup.js     # Configuração inicial (bounds, center)
+│   ├── hooks/               # 🔗 Hooks customizados
+│   │   └── useMapPersistence.js # Hook para gerenciar persistência
 │   └── utils/               # 🔧 Utilitários e funções auxiliares
-│       └── calculates.js    # Funções matemáticas (distância, tempo)
+│       ├── calculates.js    # Funções matemáticas (distância, tempo)
+│       └── persistence.js   # Utilitários para localStorage
 ```
 
 ## 3. Tecnologias Utilizadas
@@ -111,7 +115,8 @@ export default ComponentName;
 ### Gerenciamento de Estado:
 - **Estado local**: `useState` para componentes isolados
 - **Props drilling**: Estado passado de Map.js para subcomponentes
-- **Sem Redux/Context**: Estado mantido em memória (volátil)
+- **Persistência**: `localStorage` para manter dados entre sessões
+- **Hook customizado**: `useMapPersistence` para gerenciar salvamento automático
 
 ### Naming Conventions:
 - **Componentes**: PascalCase (`Map.js`, `AddMarker.js`)
@@ -128,7 +133,7 @@ export default ComponentName;
 ## 5. TODOs Funcionais (Features Pendentes)
 
 ### Alta Prioridade:
-- [ ] **Persistência de Dados**: Implementar localStorage para salvar estado entre sessões
+- [x] **Persistência de Dados**: ✅ Implementado localStorage para salvar estado entre sessões
 - [ ] **Múltiplas Rotas**: Suporte a várias rotas simultâneas com cores diferentes
 - [ ] **Sistema de Camadas**: Adicionar mais overlays (territorial, político, etc.)
 - [ ] **Mobile Responsivo**: Otimizar interface para dispositivos móveis
@@ -184,9 +189,9 @@ export default ComponentName;
 ### Ao ser questionado sobre o projeto, sempre incluir:
 
 1. **Contexto de Estado**: 
-   - ⚠️ Estados são voláteis (useState apenas)
-   - ⚠️ Dados perdidos no refresh (sem localStorage)
-   - ✅ Export/import manual disponível
+   - ✅ Estados persistentes (localStorage implementado)
+   - ✅ Salvamento automático após mudanças
+   - ✅ Controle manual de persistência disponível
 
 2. **Funcionalidades Principais**:
    - Mapa interativo com zoom/pan
@@ -197,7 +202,6 @@ export default ComponentName;
    - Tutorial interativo
 
 3. **Limitações Atuais**:
-   - Sem persistência automática
    - Sem responsividade mobile
    - Sem testes automatizados
    - Sem backend/API
