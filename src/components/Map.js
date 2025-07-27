@@ -18,6 +18,7 @@ import { center, bounds, setCenter } from './Map/setup';
 import { handleDragEnd, handleExport, handleImport, handleMarkerClick, handleMarkerDataChange, handlePinClick, handlePinDataChange, handlePinDragEnd, handlePinRightClick, handleRightClick } from './Map/handlers';
 import { useMapPersistence } from '../hooks/useMapPersistence';
 import PersistenceControl from './PersistenceControl';
+import PWAStatus from './PWAStatus';
 
 function Map() {
   const [markers, setMarkers] = useState([]);
@@ -151,12 +152,16 @@ function Map() {
       )}
       
       {/* Controle de Persistência */}
+      {/* Controle de Persistência */}
       <PersistenceControl
         saveCurrentState={saveCurrentState}
         clearSavedState={clearSavedState}
         getSavedStateInfo={getSavedStateInfo}
         loadInitialState={loadInitialState}
       />
+      
+      {/* Status PWA e Conectividade */}
+      <PWAStatus />
     </div>
   );
 }

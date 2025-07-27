@@ -21,6 +21,7 @@ zolda-interactive-map/
 │   ├── index.html             # Template HTML principal
 │   ├── manifest.json          # PWA manifest
 │   ├── robots.txt             # Configuração para web crawlers
+│   ├── sw.js                  # 📱 Service Worker para PWA/offline
 │   ├── img/                   # Imagens do mapa e ícones
 │   │   ├── OMundoConhecido.png        # 🗺️ Mapa principal do mundo
 │   │   ├── AsLegendasConhecidas.png   # Overlay de legendas
@@ -52,6 +53,7 @@ zolda-interactive-map/
 │   │   ├── LayerControl.js  # Controle de camadas do mapa
 │   │   ├── MarkerPanel.js   # Painel de configuração de marcadores
 │   │   ├── PersistenceControl.js # 💾 Controle de persistência do estado
+│   │   ├── PWAStatus.js     # 📱 Status e controles PWA/offline
 │   │   ├── Tutorial.js      # Tutorial interativo para novos usuários
 │   │   ├── Tutorial.css     # Estilos específicos do tutorial
 │   │   ├── DiceRoller/      # 🎲 Módulo de dados 3D
@@ -65,7 +67,8 @@ zolda-interactive-map/
 │   │   └── useMapPersistence.js # Hook para gerenciar persistência
 │   └── utils/               # 🔧 Utilitários e funções auxiliares
 │       ├── calculates.js    # Funções matemáticas (distância, tempo)
-│       └── persistence.js   # Utilitários para localStorage
+│       ├── persistence.js   # Utilitários para localStorage
+│       └── serviceWorker.js # 📱 Registro e controle de Service Worker
 ```
 
 ## 3. Tecnologias Utilizadas
@@ -149,7 +152,7 @@ export default ComponentName;
 - [ ] **Modo Escuro**: Theme switcher
 - [ ] **Internacionalização**: i18n para múltiplos idiomas
 - [ ] **API Backend**: Persistência em servidor
-- [ ] **Progressive Web App**: Funcionalidade offline
+- [x] **Progressive Web App**: ✅ Funcionalidade offline implementada
 - [ ] **Integração com APIs**: Weather, population data, etc.
 
 ## 6. TODOs Não-Funcionais
@@ -200,6 +203,7 @@ export default ComponentName;
    - Sistema de busca de localizações
    - Dados 3D integrados
    - Tutorial interativo
+   - Progressive Web App com funcionalidade offline
 
 3. **Limitações Atuais**:
    - Sem responsividade mobile
