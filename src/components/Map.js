@@ -19,6 +19,8 @@ import { handleDragEnd, handleExport, handleImport, handleMarkerClick, handleMar
 import { useMapPersistence } from '../hooks/useMapPersistence';
 import PersistenceControl from './PersistenceControl';
 import PWAStatus from './PWAStatus';
+import { DevOnly } from '../utils/environment';
+import DebugToggle from './DebugToggle';
 
 function Map() {
   const [markers, setMarkers] = useState([]);
@@ -151,17 +153,22 @@ function Map() {
         />
       )}
       
-      {/* Controle de Persistência */}
-      {/* Controle de Persistência */}
-      <PersistenceControl
-        saveCurrentState={saveCurrentState}
-        clearSavedState={clearSavedState}
-        getSavedStateInfo={getSavedStateInfo}
-        loadInitialState={loadInitialState}
-      />
-      
-      {/* Status PWA e Conectividade */}
-      <PWAStatus />
+      {/* Componentes de Debug/Desenvolvimento - Só aparecem no modo dev */}
+      <DevOnly>
+        {/* Controle de Persistência */}
+        <PersistenceControl
+          saveCurrentState={saveCurrentState}
+          clearSavedState={clearSavedState}
+          getSavedStateInfo={getSavedStateInfo}
+          loadInitialState={loadInitialState}
+        />
+        
+        {/* Status PWA e Conectividade */}
+        <PWAStatus />
+      </DevOnly>
+
+      {/* Toggle discreto para ativar debug em produção */}
+      <DebugToggle />
     </div>
   );
 }

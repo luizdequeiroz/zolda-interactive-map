@@ -1,10 +1,13 @@
 // src/components/PersistenceControl.js
 
 import React, { useState, useEffect } from 'react';
+import { useDraggable } from '../hooks/useDraggable';
+import { getDefaultPosition } from '../utils/componentPositions';
 
 /**
  * Componente para controlar a persistência do estado do mapa
  * Permite salvar, carregar e limpar dados manualmente
+ * Agora com funcionalidade de drag-and-drop
  */
 function PersistenceControl({ 
   saveCurrentState, 
@@ -19,6 +22,24 @@ function PersistenceControl({
     pinsCount: 0
   });
   const [isVisible, setIsVisible] = useState(false);
+
+  // Hook para drag-and-drop com persistência
+  const {
+    position,
+    isDragging,
+    dragHandlers,
+    dragStyle
+  } = useDraggable(
+    'persistence-control', // ID único para persistência
+    getDefaultPosition('persistence'), // Posição inicial
+    // Constraints para manter na tela
+    { 
+      minX: 0, 
+      maxX: window.innerWidth - 270, 
+      minY: 0, 
+      maxY: window.innerHeight - 100 
+    }
+  );
 
   // Atualiza informações do estado salvo
   const updateStateInfo = () => {
@@ -73,32 +94,41 @@ function PersistenceControl({
   };
 
   return (
-    <div style={{
-      position: 'fixed',
-      bottom: '10px',
-      right: '10px',
-      zIndex: 1001,
-      backgroundColor: 'white',
-      borderRadius: '8px',
-      boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-      border: '1px solid #ccc'
-    }}>
-      {/* Botão para mostrar/ocultar painel */}
+    <div 
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        zIndex: 1001,
+        backgroundColor: 'white',
+        borderRadius: '8px',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+        border: '1px solid #ccc',
+        userSelect: 'none',
+        ...dragStyle
+      }}
+    >
+      {/* Handle para arrastar - botão principal */}
       <button
+        {...dragHandlers}
         onClick={() => setIsVisible(!isVisible)}
         style={{
           width: '100%',
           padding: '8px 12px',
-          backgroundColor: '#4CAF50',
+          backgroundColor: isDragging ? '#45a049' : '#4CAF50',
           color: 'white',
           border: 'none',
           borderRadius: isVisible ? '8px 8px 0 0' : '8px',
-          cursor: 'pointer',
+          cursor: isDragging ? 'grabbing' : 'grab',
           fontSize: '12px',
-          fontWeight: 'bold'
+          fontWeight: 'bold',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '4px'
         }}
-        title={`${stateInfo.markersCount} marcadores, ${stateInfo.pinsCount} pinos salvos`}
+        title={`Drag para mover | ${stateInfo.markersCount} marcadores, ${stateInfo.pinsCount} pinos salvos`}
       >
+        <span style={{ cursor: 'grab' }}>⋮⋮</span>
         💾 Cache {stateInfo.hasData && `(${stateInfo.markersCount + stateInfo.pinsCount})`}
       </button>
 

@@ -1,5 +1,7 @@
 // src/utils/persistence.js
 
+import { persistenceLog } from './environment';
+
 /**
  * Utilitário para persistência do estado do mapa no localStorage
  * Gerencia salvamento e recuperação de marcadores, pinos e suas descrições
@@ -55,7 +57,7 @@ export const saveMapState = (mapData) => {
     localStorage.setItem(STORAGE_KEYS.PIN_DATA, JSON.stringify(dataToSave.pinData));
     localStorage.setItem(STORAGE_KEYS.MAP_STATE, JSON.stringify(dataToSave.mapState));
 
-    console.log('Estado do mapa salvo com sucesso:', dataToSave.mapState.lastSaved);
+    persistenceLog('Estado do mapa salvo com sucesso:', dataToSave.mapState.lastSaved);
     return true;
   } catch (error) {
     console.error('Erro ao salvar estado do mapa:', error);
@@ -83,7 +85,7 @@ export const loadMapState = () => {
       mapState
     };
 
-    console.log('Estado do mapa carregado:', {
+    persistenceLog('Estado do mapa carregado:', {
       markersCount: markers.length,
       pinsCount: pins.length,
       lastSaved: mapState.lastSaved
@@ -104,7 +106,7 @@ export const clearMapState = () => {
     Object.values(STORAGE_KEYS).forEach(key => {
       localStorage.removeItem(key);
     });
-    console.log('Estado do mapa limpo com sucesso');
+    persistenceLog('Estado do mapa limpo com sucesso');
     return true;
   } catch (error) {
     console.error('Erro ao limpar estado do mapa:', error);

@@ -2,16 +2,37 @@
 
 import React, { useState, useEffect } from 'react';
 import { registerSW, addConnectionListeners, isOffline, updateSW } from '../utils/serviceWorker';
+import { useDraggable } from '../hooks/useDraggable';
+import { getDefaultPosition } from '../utils/componentPositions';
 
 /**
  * Componente para mostrar o status PWA e controles offline
  * Indica quando a aplicação está offline e permite forçar atualizações
+ * Agora com funcionalidade de drag-and-drop
  */
 function PWAStatus() {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [swRegistered, setSwRegistered] = useState(false);
   const [updateAvailable, setUpdateAvailable] = useState(false);
   const [showStatus, setShowStatus] = useState(false);
+
+  // Hook para drag-and-drop com persistência
+  const {
+    position,
+    isDragging,
+    dragHandlers,
+    dragStyle
+  } = useDraggable(
+    'pwa-status', // ID único para persistência
+    getDefaultPosition('pwa'), // Posição inicial
+    // Constraints para manter na tela
+    { 
+      minX: 0, 
+      maxX: window.innerWidth - 210, 
+      minY: 0, 
+      maxY: window.innerHeight - 100 
+    }
+  );
 
   useEffect(() => {
     // Registra o Service Worker
@@ -65,35 +86,45 @@ function PWAStatus() {
   };
 
   return (
-    <div style={{
-      position: 'fixed',
-      bottom: '10px',
-      left: '10px',
-      zIndex: 1001,
-      backgroundColor: 'white',
-      borderRadius: '8px',
-      boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-      border: '1px solid #ccc'
-    }}>
-      {/* Indicador de status */}
+    <div 
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        zIndex: 1001,
+        backgroundColor: 'white',
+        borderRadius: '8px',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+        border: '1px solid #ccc',
+        userSelect: 'none',
+        ...dragStyle
+      }}
+    >
+      {/* Indicador de status com handle para drag */}
       <button
+        {...dragHandlers}
         onClick={() => setShowStatus(!showStatus)}
         style={{
           width: '100%',
           padding: '6px 10px',
-          backgroundColor: getStatusColor(),
+          backgroundColor: isDragging ? 
+            (getStatusColor() === '#f44336' ? '#d32f2f' : 
+             getStatusColor() === '#FF9800' ? '#f57c00' : 
+             getStatusColor() === '#4CAF50' ? '#388e3c' : '#1976d2') 
+            : getStatusColor(),
           color: 'white',
           border: 'none',
           borderRadius: showStatus ? '8px 8px 0 0' : '8px',
-          cursor: 'pointer',
+          cursor: isDragging ? 'grabbing' : 'grab',
           fontSize: '11px',
           fontWeight: 'bold',
           display: 'flex',
           alignItems: 'center',
           gap: '4px'
         }}
-        title={getStatusMessage()}
+        title={`Drag para mover | ${getStatusMessage()}`}
       >
+        <span style={{ cursor: 'grab' }}>⋮⋮</span>
         {getStatusText()}
         {updateAvailable && (
           <span style={{

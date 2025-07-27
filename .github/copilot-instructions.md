@@ -52,8 +52,9 @@ zolda-interactive-map/
 │   │   ├── InfoPanel.js     # Painel lateral de informações
 │   │   ├── LayerControl.js  # Controle de camadas do mapa
 │   │   ├── MarkerPanel.js   # Painel de configuração de marcadores
-│   │   ├── PersistenceControl.js # 💾 Controle de persistência do estado
-│   │   ├── PWAStatus.js     # 📱 Status e controles PWA/offline
+│   │   ├── PersistenceControl.js # 💾 Controle de persistência do estado (dev-only)
+│   │   ├── PWAStatus.js     # 📱 Status e controles PWA/offline (dev-only)
+│   │   ├── DebugToggle.js   # 🔧 Toggle discreto para ativar debug em produção
 │   │   ├── Tutorial.js      # Tutorial interativo para novos usuários
 │   │   ├── Tutorial.css     # Estilos específicos do tutorial
 │   │   ├── DiceRoller/      # 🎲 Módulo de dados 3D
@@ -68,6 +69,7 @@ zolda-interactive-map/
 │   └── utils/               # 🔧 Utilitários e funções auxiliares
 │       ├── calculates.js    # Funções matemáticas (distância, tempo)
 │       ├── persistence.js   # Utilitários para localStorage
+│       ├── environment.js   # 🔧 Utilitários de ambiente (dev/prod)
 │       └── serviceWorker.js # 📱 Registro e controle de Service Worker
 ```
 
@@ -132,6 +134,12 @@ export default ComponentName;
 - **Pinos**: clique direito no mapa
 - **Remoção**: clique direito no elemento
 - **Movimentação**: drag and drop
+
+### Controle de Ambiente:
+- **Desenvolvimento**: Componentes de debug visíveis (PersistenceControl, PWAStatus)
+- **Produção**: Componentes de debug ocultos por padrão
+- **Debug em Produção**: Ativar via URL (?debug=true) ou Ctrl+Shift+D+E+V
+- **Utilitário**: `environment.js` com funções `isDevelopment()`, `DevOnly`, etc.
 
 ## 5. TODOs Funcionais (Features Pendentes)
 
