@@ -1,16 +1,27 @@
 {
-    "short_name": "React App",
-    "name": "Create React App Sample",
-    "icons": [
-      {
-        "src": "favicon.ico",
-        "sizes": "64x64 32x32 24x24 16x16",
-        "type": "image/x-icon"
-      }
-    ],
-    "start_url": ".",
-    "display": "standalone",
-    "theme_color": "#000000",
-    "background_color": "#ffffff"
-  }
+  "short_name": "Zolda Map",
+  "name": "Zolda Interactive Map - Mundo Conhecido",
+  "description": "Mapa interativo do Mundo Conhecido para RPGs e worldbuilding",
+  "icons": [
+    {
+      "src": "img/OMundoConhecido.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "img/dice.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape",
+  "theme_color": "#4CAF50",
+  "background_color": "#ffffff",
+  "categories": ["games", "utilities", "productivity"],
+  "lang": "pt-BR"
+}
   
